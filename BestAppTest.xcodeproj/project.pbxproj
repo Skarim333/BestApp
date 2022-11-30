@@ -25,6 +25,7 @@
 		5D90FCF42937BBE100C0C2FF /* TextContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D90FCF32937BBE100C0C2FF /* TextContent.swift */; };
 		5D90FCF62937C2EE00C0C2FF /* PostSortable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D90FCF52937C2EE00C0C2FF /* PostSortable.swift */; };
 		5D90FCF82937C49F00C0C2FF /* ToolbarMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D90FCF72937C49F00C0C2FF /* ToolbarMenu.swift */; };
+		5D90FCFE2937D40200C0C2FF /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D90FCFD2937D40200C0C2FF /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		5D90FCF32937BBE100C0C2FF /* TextContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextContent.swift; sourceTree = "<group>"; };
 		5D90FCF52937C2EE00C0C2FF /* PostSortable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostSortable.swift; sourceTree = "<group>"; };
 		5D90FCF72937C49F00C0C2FF /* ToolbarMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarMenu.swift; sourceTree = "<group>"; };
+		5D90FCFD2937D40200C0C2FF /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				5D0BD8D929365DD400304DEF /* MainScreenViewController.swift */,
+				5D90FCFD2937D40200C0C2FF /* DetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 				5D0BD8DA29365DD400304DEF /* MainScreenViewController.swift in Sources */,
 				5D90FCF12937B2C200C0C2FF /* PhotoCell.swift in Sources */,
 				5D0BD8D629365DD400304DEF /* AppDelegate.swift in Sources */,
+				5D90FCFE2937D40200C0C2FF /* DetailViewController.swift in Sources */,
 				5D90FCF82937C49F00C0C2FF /* ToolbarMenu.swift in Sources */,
 				5D0BD8ED2936653000304DEF /* APICaler.swift in Sources */,
 				5D90FCF42937BBE100C0C2FF /* TextContent.swift in Sources */,

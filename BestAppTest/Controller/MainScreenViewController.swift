@@ -16,13 +16,12 @@ class MainScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        showAlertFilter()
         configureNavigationController()
         configureSearchController()
         configureCollectionViews()
         APICaller.shared.getPhoto(search: "random", num: 20) { [weak self] result in
-            guard let self = self else {
-                return
-            }
+            guard let self = self else { return }
             switch result {
             case .success(let data):
                 DispatchQueue.main.async {
@@ -38,6 +37,32 @@ class MainScreenViewController: UIViewController {
 
     override func loadView() {
         view = contentView
+    }
+    
+    func showAlertFilter() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gearshape.2"), style: .done, target: self, action: #selector(tapButton))
+        navigationItem.rightBarButtonItem?.tintColor = .black
+    }
+    
+    @objc func tapButton() {
+        let actionSheet = UIAlertController(title: "Sort Order",
+                                            message: nil,
+                                            preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "Publication Date", style: .default, handler: { [weak self] _ in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                self.photo = self.photo.sorted(by: {$0.published < $1.published})
+                self.contentView.photoCollectionView.reloadData()
+            }
+        }))
+        actionSheet.addAction(UIAlertAction(title: "Creation Date", style: .default, handler: { [weak self] _ in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                self.photo = self.photo.sorted(by: {$0.date_taken < $1.date_taken})
+                self.contentView.photoCollectionView.reloadData()
+            }
+        }))
+        present(actionSheet, animated: true)
     }
     
     private func configureCollectionViews() {
@@ -74,10 +99,9 @@ extension MainScreenViewController: UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let viewController = DetailViewController()
-//        viewController.item = item
-//
-//        self.present(viewController, animated: true)
+        let viewController = DetailViewController()
+        viewController.url = self.photo[indexPath.item].media.m
+        self.present(viewController, animated: true)
     }
 }
 
@@ -111,10 +135,19 @@ extension MainScreenViewController: UICollectionViewDelegateFlowLayout {
 
 extension MainScreenViewController: UISearchBarDelegate {
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-//        guard let searchText = searchBar.text else { return }
-//        Task {
-//            try await self.viewModel?.fetch(for: searchText)
-//        }
+        APICaller.shared.getPhoto(search: searchBar.text ?? "random", num: 20) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let data):
+                DispatchQueue.main.async {
+                    self.photo = data
+                    self.contentView.photoCollectionView.reloadData()
+                }
+         
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
