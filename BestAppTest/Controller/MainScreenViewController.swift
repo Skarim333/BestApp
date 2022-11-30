@@ -10,7 +10,6 @@ import UIKit
 class MainScreenViewController: UIViewController {
 
     var searchController = UISearchController()
-    private var pageOffset = 0
     var photo = [Item]()
     private lazy var contentView = MainScreenView()
     
@@ -20,12 +19,13 @@ class MainScreenViewController: UIViewController {
         configureNavigationController()
         configureSearchController()
         configureCollectionViews()
-        APICaller.shared.getPhoto(search: "random", num: 20) { [weak self] result in
+        APICaller.shared.getPhoto() { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let data):
                 DispatchQueue.main.async {
                     self.photo = data
+                    
                     self.contentView.photoCollectionView.reloadData()
                 }
          
@@ -90,14 +90,7 @@ class MainScreenViewController: UIViewController {
 }
 
 extension MainScreenViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-//            guard indexPath.row == pageOffset,
-//                  pageOffset <= gifPaginationTotalCount
-//            else { return }
-            
-//            gifOffset += 20
-    }
-    
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let viewController = DetailViewController()
         viewController.url = self.photo[indexPath.item].media.m
@@ -135,7 +128,7 @@ extension MainScreenViewController: UICollectionViewDelegateFlowLayout {
 
 extension MainScreenViewController: UISearchBarDelegate {
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        APICaller.shared.getPhoto(search: searchBar.text ?? "random", num: 20) { [weak self] result in
+        APICaller.shared.getSearchPhoto(search: searchBar.text ?? "random") { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let data):

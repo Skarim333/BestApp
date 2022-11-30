@@ -26,9 +26,6 @@ extension Endpoint {
         return "www.flickr.com"
     }
     
-    var apiKey: String {
-        return "838b09c42fbd7f6b6d3284f23d241065"
-    }
     
     var path: String {
         return "/services/rest/"
@@ -39,11 +36,9 @@ extension Endpoint {
         
         var components = URLComponents()
         var baseQueryItems = [
-            URLQueryItem(name: "api_key", value: apiKey),
             URLQueryItem(name: "method", value: "flickr.photos.search"),
             URLQueryItem(name: "format", value: "json"),
             URLQueryItem(name: "nojsoncallback", value: "1"),
-            URLQueryItem(name: "per_page", value: "10"),
         ]
         
         baseQueryItems.append(contentsOf: queryItems)
