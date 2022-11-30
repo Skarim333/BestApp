@@ -26,6 +26,8 @@
 		5D90FCF62937C2EE00C0C2FF /* PostSortable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D90FCF52937C2EE00C0C2FF /* PostSortable.swift */; };
 		5D90FCF82937C49F00C0C2FF /* ToolbarMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D90FCF72937C49F00C0C2FF /* ToolbarMenu.swift */; };
 		5D90FCFE2937D40200C0C2FF /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D90FCFD2937D40200C0C2FF /* DetailViewController.swift */; };
+		5D90FD012937DAB600C0C2FF /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D90FD002937DAB600C0C2FF /* UIViewExtension.swift */; };
+		5D90FD032937E10700C0C2FF /* String + DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D90FD022937E10700C0C2FF /* String + DateExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +51,8 @@
 		5D90FCF52937C2EE00C0C2FF /* PostSortable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostSortable.swift; sourceTree = "<group>"; };
 		5D90FCF72937C49F00C0C2FF /* ToolbarMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarMenu.swift; sourceTree = "<group>"; };
 		5D90FCFD2937D40200C0C2FF /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		5D90FD002937DAB600C0C2FF /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		5D90FD022937E10700C0C2FF /* String + DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + DateExtension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +94,7 @@
 				5D0BD8F0293667D100304DEF /* Model */,
 				5D90FCED2937B19A00C0C2FF /* Controller */,
 				5D90FCEC2937B19100C0C2FF /* View */,
+				5D90FCFF2937DA8C00C0C2FF /* Extension */,
 				5D0BD8DE29365DD700304DEF /* Assets.xcassets */,
 				5D0BD8E029365DD700304DEF /* LaunchScreen.storyboard */,
 				5D0BD8E329365DD700304DEF /* Info.plist */,
@@ -151,6 +156,15 @@
 				5D90FCF02937B2C200C0C2FF /* PhotoCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		5D90FCFF2937DA8C00C0C2FF /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				5D90FD002937DAB600C0C2FF /* UIViewExtension.swift */,
+				5D90FD022937E10700C0C2FF /* String + DateExtension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -237,11 +251,13 @@
 				5D90FCF12937B2C200C0C2FF /* PhotoCell.swift in Sources */,
 				5D0BD8D629365DD400304DEF /* AppDelegate.swift in Sources */,
 				5D90FCFE2937D40200C0C2FF /* DetailViewController.swift in Sources */,
+				5D90FD012937DAB600C0C2FF /* UIViewExtension.swift in Sources */,
 				5D90FCF82937C49F00C0C2FF /* ToolbarMenu.swift in Sources */,
 				5D0BD8ED2936653000304DEF /* APICaler.swift in Sources */,
 				5D90FCF42937BBE100C0C2FF /* TextContent.swift in Sources */,
 				5D0BD8EF2936676800304DEF /* PhotoModel.swift in Sources */,
 				5D90FCEF2937B1B000C0C2FF /* MainScreenView.swift in Sources */,
+				5D90FD032937E10700C0C2FF /* String + DateExtension.swift in Sources */,
 				5D0BD8D829365DD400304DEF /* SceneDelegate.swift in Sources */,
 				5D0BD8F929368A8500304DEF /* RequestError.swift in Sources */,
 				5D0BD8FB29368AA900304DEF /* PhotoEndpoint.swift in Sources */,

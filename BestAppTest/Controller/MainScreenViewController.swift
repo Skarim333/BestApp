@@ -48,14 +48,14 @@ class MainScreenViewController: UIViewController {
         let actionSheet = UIAlertController(title: "Sort Order",
                                             message: nil,
                                             preferredStyle: .actionSheet)
-        actionSheet.addAction(UIAlertAction(title: "Publication Date", style: .default, handler: { [weak self] _ in
+        actionSheet.addAction(UIAlertAction(title: "Sort title name", style: .default, handler: { [weak self] _ in
             guard let self = self else { return }
             DispatchQueue.main.async {
-                self.photo = self.photo.sorted(by: {$0.published < $1.published})
+                self.photo = self.photo.sorted(by: {$0.title < $1.title})
                 self.contentView.photoCollectionView.reloadData()
             }
         }))
-        actionSheet.addAction(UIAlertAction(title: "Creation Date", style: .default, handler: { [weak self] _ in
+        actionSheet.addAction(UIAlertAction(title: "Sort creation Date", style: .default, handler: { [weak self] _ in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 self.photo = self.photo.sorted(by: {$0.date_taken < $1.date_taken})
@@ -115,7 +115,7 @@ extension MainScreenViewController: UICollectionViewDataSource {
             withReuseIdentifier: PhotoCell.identifier,
             for: indexPath
         ) as? PhotoCell else { return UICollectionViewCell() }
-        cell.fill(with: photo[indexPath.row].media.m)
+        cell.fill(with: photo[indexPath.row])
         return cell
     }
     

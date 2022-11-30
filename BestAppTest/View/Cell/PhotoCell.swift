@@ -27,6 +27,18 @@ class PhotoCell: UICollectionViewCell {
         return imageView
     }()
     
+    private var titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
+        return label
+    }()
+    
+    private var dateLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
+        return label
+    }()
+    
     // MARK: - Lifecycle
     
     override func prepareForReuse() {
@@ -47,24 +59,22 @@ class PhotoCell: UICollectionViewCell {
     
     private func setupUI() {
         contentView.addSubview(photoImageView)
-        makeConstraints()
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(dateLabel)
         showSkeleton()
     }
     
-    private func makeConstraints() {
-        NSLayoutConstraint.activate([
-            photoImageView.topAnchor.constraint(equalTo: topAnchor),
-            photoImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            photoImageView.rightAnchor.constraint(equalTo: rightAnchor),
-            photoImageView.leftAnchor.constraint(equalTo: leftAnchor),
-            
-        ])
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        photoImageView.frame = CGRect(x: 0, y: 0, width: self.width, height: self.height - 28)
+        titleLabel.frame = CGRect(x: 0, y: self.height-28, width: self.width, height: 14)
+        dateLabel.frame = CGRect(x: 0, y: self.height-14, width: self.width, height: 14)
     }
     
-    func fill(with imageUrlString: URL) {
+    func fill(with model: Item) {
 //        guard let url = URL(string: imageUrlString) else { return }
         photoImageView.kf.setImage(
-            with: imageUrlString,
+            with: model.media.m,
             placeholder: nil,
             options: [
                 .scaleFactor(UIScreen.main.scale),
@@ -75,6 +85,8 @@ class PhotoCell: UICollectionViewCell {
                 self.hideSkeleton()
             }
         )
+        titleLabel.text = model.title
+        dateLabel.text = model.published.toDate()?.toString()
     }
     
     // MARK: - Skeleton
