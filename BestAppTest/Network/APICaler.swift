@@ -7,15 +7,17 @@
 
 import Foundation
 
-struct Constants {
-    static let API_KEY = "838b09c42fbd7f6b6d3284f23d241065"
-    static let baseURL = "https://www.flickr.com/services/feeds/photos_public.gne?"
-    static let random = "random"
-    static let num = "per_page=\(1)"
-}
-
 enum APIError: Error {
     case failedTogetData
+    
+    var name: String {
+        let error: String
+        switch self{
+        case .failedTogetData:
+            error = "failedTogetData"
+        }
+        return error
+    }
 }
 
 class APICaller {

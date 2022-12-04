@@ -23,6 +23,7 @@ class PhotoCell: UICollectionViewCell {
     private var photoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
+//        imageView.contentMode = .scaleAspectFit
         imageView.layer.cornerRadius = 8
         return imageView
     }()
@@ -72,7 +73,6 @@ class PhotoCell: UICollectionViewCell {
     }
     
     func fill(with model: Item) {
-//        guard let url = URL(string: imageUrlString) else { return }
         photoImageView.kf.setImage(
             with: model.media.m,
             placeholder: nil,
@@ -81,8 +81,9 @@ class PhotoCell: UICollectionViewCell {
                 .transition(.fade(0.5)),
                 .cacheOriginalImage
             ],
-            completionHandler: { _ in
-                self.hideSkeleton()
+            completionHandler: { [weak self] _ in
+                
+                self?.hideSkeleton()
             }
         )
         titleLabel.text = model.title
@@ -109,10 +110,12 @@ class PhotoCell: UICollectionViewCell {
         gradientLayer.frame = UIScreen.main.bounds
         gradientLayer.name = skeletonGradientName
         
-        photoImageView.layer.mask = skeletonLayer
-        photoImageView.layer.addSublayer(skeletonLayer)
-        photoImageView.layer.addSublayer(gradientLayer)
-        photoImageView.clipsToBounds = true
+        contentView.layer.mask = skeletonLayer
+        contentView.layer.addSublayer(skeletonLayer)
+        contentView.layer.addSublayer(gradientLayer)
+        contentView.clipsToBounds = true
+        
+        
         let widht = UIScreen.main.bounds.width
         
         let animation = CABasicAnimation(keyPath: "transform.translation.x")
@@ -127,7 +130,7 @@ class PhotoCell: UICollectionViewCell {
     }
     
     private func hideSkeleton() {
-        photoImageView.layer.sublayers?.removeAll {
+        contentView.layer.sublayers?.removeAll {
             $0.name == skeletonLayerName || $0.name == skeletonGradientName
         }
     }

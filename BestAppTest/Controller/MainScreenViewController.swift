@@ -19,6 +19,14 @@ class MainScreenViewController: UIViewController {
         configureNavigationController()
         configureSearchController()
         configureCollectionViews()
+        getData()
+    }
+
+    override func loadView() {
+        view = contentView
+    }
+    
+    func getData() {
         APICaller.shared.getPhoto() { [weak self] result in
             guard let self = self else { return }
             switch result {
@@ -33,10 +41,6 @@ class MainScreenViewController: UIViewController {
                 print(error.localizedDescription)
             }
         }
-    }
-
-    override func loadView() {
-        view = contentView
     }
     
     func showAlertFilter() {
@@ -76,7 +80,7 @@ class MainScreenViewController: UIViewController {
     }
     
     func configureSearchController() {
-        searchController.searchBar.placeholder = TextContent.Titles.SearchControllerPlaceHolder
+        searchController.searchBar.placeholder = Titles.SearchControllerPlaceHolder
         searchController.searchBar.translatesAutoresizingMaskIntoConstraints = false
         searchController.searchBar.delegate = self
     }
@@ -84,7 +88,7 @@ class MainScreenViewController: UIViewController {
     func configureNavigationController() {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.searchController = searchController
-        navigationItem.title = TextContent.Titles.NavigationTitle
+        navigationItem.title = Titles.NavigationTitle
     }
 
 }
@@ -143,7 +147,4 @@ extension MainScreenViewController: UISearchBarDelegate {
         }
     }
     
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-//        self.viewModel?.cancel()
-    }
 }

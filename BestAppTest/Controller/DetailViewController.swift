@@ -10,8 +10,11 @@ import UIKit
 class DetailViewController: UIViewController {
     
     var url: URL?
+    
     private var photoImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.alpha = 1
         return imageView
     }()
     
